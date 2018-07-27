@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lista"
+            android:icon="@drawable/ic_menu_cc_am"
+            android:title="Mi perfil" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_gallery"
+            android:title="Canciones" />
+        <item
+            android:id="@+id/nav_artista"
+            android:icon="@drawable/ic_menu_allfriends"
+            android:title="Mùsicos/Bandas" />
+        <item
+            android:id="@+id/nav_genero"
+            android:icon="@drawable/ic_menu_allfriends"
+            android:title="Generos" />
+
+    </group>
+
+</menu>
