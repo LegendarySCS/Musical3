@@ -96,7 +96,7 @@ public class ActivityRepro extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.flContent, fragment)
                 .commit();
-
+        permisos();
             }
 
 
@@ -238,17 +238,14 @@ public class ActivityRepro extends AppCompatActivity
     private void permisos() {
         String[] permissions = new String[]{
                 Manifest.permission.INTERNET
+                ,Manifest.permission.READ_CONTACTS
                 ,Manifest.permission.READ_EXTERNAL_STORAGE
                 ,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 //
         if (ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[0]) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[1]) != PackageManager.PERMISSION_GRANTED||
                 ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[2]) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[3]) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[4]) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[5]) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[6]) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[7]) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[3]) != PackageManager.PERMISSION_GRANTED) {
             //Si alguno de los permisos no esta concedido lo solicita
             Toast.makeText(this, "Permisos no activados! " + Build.VERSION.SDK_INT, Toast.LENGTH_LONG).show();
 
