@@ -1,9 +1,13 @@
 package zambanosuarez.musical;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -22,6 +26,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.truizlop.fabreveallayout.FABRevealLayout;
 import com.truizlop.fabreveallayout.OnRevealChangeListener;
@@ -38,6 +43,7 @@ public class ActivityRepro extends AppCompatActivity
     PagerFragmento adapter ;
     DrawerLayout drawer;
 
+    private static final int MULTIPLE_PERMISSIONS_REQUEST_CODE = 3;
 
     private FABRevealLayout fabRevealLayout;
     private TextView albumTitleText;
@@ -228,5 +234,31 @@ public class ActivityRepro extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void permisos() {
+        String[] permissions = new String[]{
+                Manifest.permission.INTERNET
+                ,Manifest.permission.READ_EXTERNAL_STORAGE
+                ,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//
+        if (ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[0]) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[1]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[2]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[3]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[4]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[5]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[6]) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(ActivityRepro.this, permissions[7]) != PackageManager.PERMISSION_GRANTED) {
+            //Si alguno de los permisos no esta concedido lo solicita
+            Toast.makeText(this, "Permisos no activados! " + Build.VERSION.SDK_INT, Toast.LENGTH_LONG).show();
+
+            ActivityCompat.requestPermissions(ActivityRepro.this, permissions, MULTIPLE_PERMISSIONS_REQUEST_CODE);
+
+        } else {
+            //Si todos los permisos estan concedidos prosigue con el flujo normal
+            //Toast.makeText(this, "The permissions are already granted ", Toast.LENGTH_LONG).show();
+
+        }
+        //
     }
 }
